@@ -19,8 +19,10 @@
 @property (strong, nonatomic, readonly) DPHue* hue;
 
 // Set me to start manipulating a light.
-@property (strong, nonatomic) NSArray* workingLights;
+@property (strong, nonatomic) NSSet* workingLights;
 
 - (void)setWorkingLightsToColor:(UIColor*)color;
+
+- (DPHueLight*)lightWithName:(NSString*)name;
 
 @end

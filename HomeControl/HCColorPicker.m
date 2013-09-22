@@ -96,6 +96,57 @@ PixelRGBA ISColorWheel_HSBToRGB (PixelHSV hsv) {
 PixelRGBA clearRGBAPixel = {0.0f, 0.0f, 0.0f, 0.0f};
 PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
 
+@interface HCColorSelectorView : UIView
+
+@property (strong, nonatomic) UILabel* iconView;
+@property (strong, nonatomic) UIColor* selectedColor;
+
+@end
+
+@implementation HCColorSelectorView
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.iconView = [[UILabel alloc] init];
+        self.iconView.font = [UIFont systemFontOfSize:96.0f];
+        self.iconView.textAlignment = NSTextAlignmentCenter;
+        self.iconView.text = @"🔎";
+        [self addSubview:self.iconView];
+        
+        self.userInteractionEnabled = NO;
+        self.backgroundColor = [UIColor clearColor];
+        _selectedColor = [UIColor clearColor];
+    }
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.iconView.frame = self.bounds;
+    self.iconView.frameMidX = self.boundsMidX - 12.0f;
+    self.iconView.frameMidY = self.boundsMidY + 12.0f;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGSize colorFillSize = CGSizeMake(58.0f, 58.0f);
+    CGRect colorFillRect = CGRectMake(self.boundsMidX - colorFillSize.width * 0.5f, self.boundsMidY - colorFillSize.height * 0.5f, colorFillSize.width, colorFillSize.height);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [self.selectedColor set];
+
+    CGContextFillEllipseInRect(context, colorFillRect);
+}
+
+- (void)setSelectedColor:(UIColor *)selectedColor {
+    _selectedColor = selectedColor;
+    [self setNeedsDisplay];
+}
+
+@end
 #pragma mark -
 #pragma mark Private
 
@@ -112,7 +163,7 @@ PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
 @property (nonatomic) CGFloat innerRainbowRadius;
 @property (nonatomic) CGPoint centerPoint;
 
-@property (strong, nonatomic) UILabel* selectorView;
+@property (strong, nonatomic) HCColorSelectorView* colorSelectorView;
 
 @end
 
@@ -139,11 +190,8 @@ PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
         }
         
         {   // Selector
-            self.selectorView = [[UILabel alloc] init];
-            self.selectorView.font = [UIFont systemFontOfSize:96.0f];
-            self.selectorView.textAlignment = NSTextAlignmentCenter;
-            self.selectorView.text = @"🔎";
-            [self addSubview:self.selectorView];
+            self.colorSelectorView = [[HCColorSelectorView alloc] init];
+            [self addSubview:self.colorSelectorView];
         }
     }
     return self;
@@ -151,17 +199,12 @@ PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
 
 - (void)layoutSubviews {
     self.backgroundImageView.frame = self.bounds;
-    self.selectorView.frame = self.bounds;
+    self.colorSelectorView.frame = self.bounds;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (UIView*)selectorView {
+    return self.colorSelectorView.iconView;
 }
-*/
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [self handleTouch:touch];
@@ -186,8 +229,10 @@ PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
 
     PixelHSV touchedPixel = [self hsvColorAtPoint:CGPointMake(fixedWidth, fixedHeight)];
     if (touchedPixel.v > 0.0001f) {
-        self.selectorView.frameMidX = touchLocation.x;
-        self.selectorView.frameMidY = touchLocation.y;
+        self.colorSelectorView.frameMidX = touchLocation.x;
+        self.colorSelectorView.frameMidY = touchLocation.y;
+        
+        self.colorSelectorView.selectedColor = [UIColor colorWithHue:touchedPixel.h saturation:touchedPixel.s brightness:1.0f alpha:1.0f];
     }
     
     self.hue = touchedPixel.h;

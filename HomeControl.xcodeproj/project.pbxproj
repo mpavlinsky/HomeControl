@@ -31,6 +31,8 @@
 		1DD591A117EF65880062A4BB /* HCAnimalFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */; };
 		1DD591A417EF69120062A4BB /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A317EF69120062A4BB /* pig.png */; };
 		1DD591A617EF7F220062A4BB /* grassbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A517EF7F220062A4BB /* grassbackground.png */; };
+		1DD591A817EF83720062A4BB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A717EF83720062A4BB /* Icon@2x.png */; };
+		1DD591AB17EF8C410062A4BB /* HCLightGroupButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD591AA17EF8C410062A4BB /* HCLightGroupButton.m */; };
 		EF875B8B43E54BAAAD316BDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D8A68F66604E2DBE015476 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,9 @@
 		1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAnimalFriendView.m; sourceTree = "<group>"; };
 		1DD591A317EF69120062A4BB /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
 		1DD591A517EF7F220062A4BB /* grassbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grassbackground.png; sourceTree = "<group>"; };
+		1DD591A717EF83720062A4BB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1DD591A917EF8C410062A4BB /* HCLightGroupButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLightGroupButton.h; sourceTree = "<group>"; };
+		1DD591AA17EF8C410062A4BB /* HCLightGroupButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLightGroupButton.m; sourceTree = "<group>"; };
 		61D8A68F66604E2DBE015476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E95A703B9B74A43BADDA11B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +173,8 @@
 				1DD5919D17EF45270062A4BB /* HCColorPicker.m */,
 				1DD5919F17EF65880062A4BB /* HCAnimalFriendView.h */,
 				1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */,
+				1DD591A917EF8C410062A4BB /* HCLightGroupButton.h */,
+				1DD591AA17EF8C410062A4BB /* HCLightGroupButton.m */,
 			);
 			path = HomeControl;
 			sourceTree = "<group>";
@@ -204,6 +211,7 @@
 		1DD591A217EF69120062A4BB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1DD591A717EF83720062A4BB /* Icon@2x.png */,
 				1DD591A517EF7F220062A4BB /* grassbackground.png */,
 				1DD591A317EF69120062A4BB /* pig.png */,
 			);
@@ -294,6 +302,7 @@
 			files = (
 				1DD591A417EF69120062A4BB /* pig.png in Resources */,
 				1D5DFC8717EE7789004F640E /* Main_iPad.storyboard in Resources */,
+				1DD591A817EF83720062A4BB /* Icon@2x.png in Resources */,
 				1DD591A617EF7F220062A4BB /* grassbackground.png in Resources */,
 				1D5DFC8C17EE7789004F640E /* Images.xcassets in Resources */,
 				1D5DFC8417EE7789004F640E /* Main_iPhone.storyboard in Resources */,
@@ -357,6 +366,7 @@
 				1D75CF4517EE873E0041580B /* HCHueHelper.m in Sources */,
 				1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */,
 				1D5DFC7D17EE7789004F640E /* main.m in Sources */,
+				1DD591AB17EF8C410062A4BB /* HCLightGroupButton.m in Sources */,
 				1D75CF4917EE90190041580B /* ISColorWheel.m in Sources */,
 				1D5DFC8117EE7789004F640E /* HCAppDelegate.m in Sources */,
 			);
@@ -503,6 +513,7 @@
 				INFOPLIST_FILE = "HomeControl/HomeControl-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -520,6 +531,7 @@
 				INFOPLIST_FILE = "HomeControl/HomeControl-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

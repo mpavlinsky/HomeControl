@@ -10,13 +10,16 @@
 #import "HCHueHelper.h"
 
 //#import "ISColorWheel.h"
+#import "HCLightGroupButton.h"
 #import "HCBrightnessSlider.h"
 #import "HCColorPicker.h"
 #import "HCAnimalFriendView.h"
 
 @interface HCViewController () <
 HCBrightnessSliderDelegate,
-HCColorPickerDelegate>
+HCColorPickerDelegate,
+HCLightGroupButtonDelegate
+>
 
 
 //- (IBAction)selectedKitchen:(id)sender;
@@ -25,9 +28,10 @@ HCColorPickerDelegate>
 
 @property (strong, nonatomic) UIImageView* backgroundImage;
 
-@property (strong, nonatomic) UIButton* kitchenButton;
-@property (strong, nonatomic) UIButton* barButton;
-@property (strong, nonatomic) UIButton* livingAreaButton;
+@property (strong, nonatomic) NSMutableArray* lightGroupButtons;
+@property (strong, nonatomic) HCLightGroupButton* kitchenButton;
+@property (strong, nonatomic) HCLightGroupButton* barButton;
+@property (strong, nonatomic) HCLightGroupButton* livingAreaButton;
 
 @property (strong, nonatomic) HCBrightnessSlider* brightnessSlider;
 
@@ -49,14 +53,36 @@ HCColorPickerDelegate>
     }
     //@"🍲"
     {   // Buttons
-//        UIFont* buttonFont = [UIFont systemFontOfSize:192.0f];
-//        {   // Kitchen
-//            self.kitchenButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//            [self.kitchenButton setTitle:@"🔪" forState:UIControlStateNormal];
-//            [self.kitchenButton.titleLabel setFont:buttonFont];
-//            [self.kitchenButton addTarget:self action:@selector(pressedKitchen:) forControlEvents:UIControlEventTouchDown];
-//            [self.view addSubview:self.kitchenButton];
-//        }
+        self.lightGroupButtons = [NSMutableArray array];
+        {   // Kitchen
+            self.kitchenButton = [[HCLightGroupButton alloc] init];// [UIButton buttonWithType:UIButtonTypeSystem];
+            self.kitchenButton.label.text = @"🔪";
+            self.kitchenButton.delegate = self;
+            self.kitchenButton.associatedLights = @[@"Kitchen 1", @"Kitchen 2"];
+            [self.view addSubview:self.kitchenButton];
+            
+            [self.lightGroupButtons addObject:self.kitchenButton];
+        }
+        
+        {   // Bar
+            self.barButton = [[HCLightGroupButton alloc] init];// [UIButton buttonWithType:UIButtonTypeSystem];
+            self.barButton.label.text = @"🍶";
+            self.barButton.delegate = self;
+            self.barButton.associatedLights = @[@"Bar 1", @"Wall 1"];
+            [self.view addSubview:self.barButton];
+            
+            [self.lightGroupButtons addObject:self.barButton];
+        }
+        
+        {   // Living Area
+            self.livingAreaButton = [[HCLightGroupButton alloc] init];// [UIButton buttonWithType:UIButtonTypeSystem];
+            self.livingAreaButton.label.text = @"🎎";
+            self.livingAreaButton.delegate = self;
+            self.livingAreaButton.associatedLights = @[@"Fan 1", @"Fan 2", @"Fan 3"];
+            [self.view addSubview:self.livingAreaButton];
+            
+            [self.lightGroupButtons addObject:self.livingAreaButton];
+        }
     }
     
 //    {   // Color Wheel
@@ -70,17 +96,19 @@ HCColorPickerDelegate>
         [self.view addSubview:self.brightnessSlider];
     }
     
+    {   // Animal Friend
+        self.animalFriendView = [[HCAnimalFriendView alloc] init];
+        [self.view addSubview:self.animalFriendView];
+    }
+    
     {   // Color Picker
         self.colorPicker = [[HCColorPicker alloc] init];
         self.colorPicker.delegate = self;
         [self.view addSubview:self.colorPicker];
     }
     
-    {   // Animal Friend
-        self.animalFriendView = [[HCAnimalFriendView alloc] init];
-        self.animalFriendView.eyeTargetView = self.colorPicker.selectorView;
-        [self.view addSubview:self.animalFriendView];
-    }
+    self.animalFriendView.eyeTargetView = self.colorPicker.selectorView;
+
 }
 
 - (void)viewWillLayoutSubviews {
@@ -90,6 +118,20 @@ HCColorPickerDelegate>
         self.backgroundImage.frame = self.view.bounds;
     }
     
+    CGSize buttonSize = CGSizeMake(150, 150);
+    CGFloat buttonPadding = 40.0f;
+    
+    self.barButton.frameSize = buttonSize;
+    self.barButton.frameMidX = self.view.boundsMidX;
+    self.barButton.frameMinY = self.view.boundsMinY + 60.0f;
+    
+    self.kitchenButton.frameSize = buttonSize;
+    self.kitchenButton.frameMidX = self.barButton.frameMidX - buttonSize.width - buttonPadding;
+    self.kitchenButton.frameMinY = self.barButton.frameMinY + buttonPadding;
+
+    self.livingAreaButton.frameSize = buttonSize;
+    self.livingAreaButton.frameMidX = self.barButton.frameMidX + buttonSize.width + buttonPadding;
+    self.livingAreaButton.frameMinY = self.barButton.frameMinY + buttonPadding;
 //    self.kitchenButton.frame = self.view.bounds;
     
 //    self.brightnessSlider.frame = self.view.bounds;
@@ -130,20 +172,32 @@ HCColorPickerDelegate>
 
 
 - (void)updateLights {
+    NSMutableSet* workingLights = [NSMutableSet set];
+    for (HCLightGroupButton* lightGroupButton in self.lightGroupButtons) {
+        if (lightGroupButton.activated) {
+            for (NSString* lightName in lightGroupButton.associatedLights) {
+                DPHueLight* foundLight = [[HCHueHelper sharedInstance] lightWithName:lightName];
+                if (foundLight) {
+                    [workingLights addObject:foundLight];
+                }
+            }
+        }
+    }
+    
     self.animalFriendView.eyeRadius = 1.0f - self.brightnessSlider.value;
     [self.animalFriendView setNeedsDisplay];
-    [HCHueHelper sharedInstance].workingLights = [HCHueHelper sharedInstance].hue.lights;
+    [HCHueHelper sharedInstance].workingLights = workingLights;
     [[HCHueHelper sharedInstance] setWorkingLightsToColor:[UIColor colorWithHue:self.colorPicker.hue saturation:self.colorPicker.saturation brightness:self.brightnessSlider.value alpha:1.0f]];
 }
-
-#pragma mark -
-#pragma mark Interface Actions
-
-- (void)pressedKitchen:(id)sender {
-    [HCHueHelper sharedInstance].workingLights = [HCHueHelper sharedInstance].hue.lights;
-    [[HCHueHelper sharedInstance] setWorkingLightsToColor:[UIColor redColor]];
-}
-
+//
+//#pragma mark -
+//#pragma mark Interface Actions
+//
+//- (void)pressedKitchen:(id)sender {
+//    [HCHueHelper sharedInstance].workingLights = [HCHueHelper sharedInstance].hue.lights;
+//    [[HCHueHelper sharedInstance] setWorkingLightsToColor:[UIColor redColor]];
+//}
+//
 
 #pragma mark -
 #pragma mark HCBrightnessSliderDelegate
@@ -156,6 +210,30 @@ HCColorPickerDelegate>
 #pragma mark HCColorPickerDelegate
 - (void)colorPickerValueChanged {
     [self updateLights];
+}
+
+#pragma mark -
+#pragma mark HCLightGroupButtonDelegate
+- (void)deactivatedLightGroupButton:(HCLightGroupButton*)button {
+    BOOL anyWasActivated = NO;
+    for (HCLightGroupButton* lightGroupButton in self.lightGroupButtons) {
+        if (lightGroupButton.activated) {
+            anyWasActivated = YES;
+            break;
+        }
+    }
+    
+    if (!anyWasActivated) {
+        button.activated = YES;
+    }
+}
+
+- (void)activatedLightGroupButton:(HCLightGroupButton*)button {
+    for (HCLightGroupButton* lightGroupButton in self.lightGroupButtons) {
+        if (!lightGroupButton.beingTouched) {
+            lightGroupButton.activated = NO;
+        }
+    }
 }
 
 @end

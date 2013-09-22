@@ -98,4 +98,14 @@ static HCHueHelper *sharedInstance;
     }
 }
 
+- (DPHueLight*)lightWithName:(NSString*)name {
+    for (DPHueLight *light in self.hue.lights) {
+        if ([light.name isEqualToString:name]) {
+            return light;
+        }
+    }
+    
+    return nil;
+}
+
 @end
