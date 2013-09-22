@@ -90,6 +90,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.autoresizesSubviews = NO;
         self.backgroundColor = [UIColor clearColor];
         {   // Face
             UIImage* faceImage = [UIImage imageNamed:@"pig"];
@@ -133,6 +134,26 @@
     
     [self.leftEye setNeedsDisplay];
     [self.rightEye setNeedsDisplay];
+}
+
+- (void)startAnimating {
+    [self rotateHeadLeft];
+}
+
+- (void)rotateHeadLeft {
+    [UIView animateWithDuration:2.0f animations:^{
+        self.transform = CGAffineTransformMakeRotation(M_PI / 16);
+    } completion:^(BOOL finished) {
+        [self rotateHeadRight];
+    }];
+}
+
+- (void)rotateHeadRight {
+    [UIView animateWithDuration:2.0f animations:^{
+        self.transform = CGAffineTransformMakeRotation(-M_PI / 16);
+    } completion:^(BOOL finished) {
+        [self rotateHeadLeft];
+    }];
 }
 
 #pragma mark -

@@ -7,6 +7,7 @@
 //
 
 #import "HCViewController.h"
+#include <stdlib.h>
 #import "HCHueHelper.h"
 
 //#import "ISColorWheel.h"
@@ -14,6 +15,7 @@
 #import "HCBrightnessSlider.h"
 #import "HCColorPicker.h"
 #import "HCAnimalFriendView.h"
+#import "HCSimpleEmojiIcon.h"
 
 @interface HCViewController () <
 HCBrightnessSliderDelegate,
@@ -51,7 +53,7 @@ HCLightGroupButtonDelegate
         self.backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"grassbackground"]];
         [self.view addSubview:self.backgroundImage];
     }
-    //@"🍲"
+    
     {   // Buttons
         self.lightGroupButtons = [NSMutableArray array];
         {   // Kitchen
@@ -150,9 +152,13 @@ HCLightGroupButtonDelegate
     self.brightnessSlider.frameMaxY = self.colorPicker.frameMinY;
     self.brightnessSlider.frameMidX = self.colorPicker.frameMidX;
     
-    self.animalFriendView.frameSize = CGSizeMake(250.0f, 250.0f);
-    self.animalFriendView.frameMidX = self.colorPicker.frameMidX;
-    self.animalFriendView.frameMidY = self.colorPicker.frameMaxY - 20.0f;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.animalFriendView.frameSize = CGSizeMake(250.0f, 250.0f);
+        self.animalFriendView.frameMidX = self.colorPicker.frameMidX;
+        self.animalFriendView.frameMidY = self.colorPicker.frameMaxY - 20.0f;
+
+    });
 }
 
 - (void)viewDidLoad
@@ -162,8 +168,24 @@ HCLightGroupButtonDelegate
     [[HCHueHelper sharedInstance] start];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.animalFriendView startAnimating];
+    [self makeCloud];
+}
 
-
+- (void)makeCloud {
+    HCSimpleEmojiIcon* cloudIcon = [HCSimpleEmojiIcon iconWithText:@"☁" andSize:96.0f + arc4random() % 60];
+    [self.view insertSubview:cloudIcon aboveSubview:self.backgroundImage];
+    cloudIcon.frameMaxX = self.view.boundsMinX;
+    cloudIcon.frameMinY = arc4random() % 75;
+    [UIView animateWithDuration:arc4random() % 15 + 30.0f delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        cloudIcon.frameMinX = self.view.boundsMaxX;
+    } completion:^(BOOL finished) {
+        [cloudIcon removeFromSuperview];
+    }];
+    
+    [self performSelector:@selector(makeCloud) withObject:nil afterDelay:arc4random() % 10 + 3];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

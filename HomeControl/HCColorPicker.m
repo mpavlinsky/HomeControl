@@ -233,13 +233,13 @@ PixelHSV clearHSVPixel = {0.0f, 0.0f, 0.0f};
         self.colorSelectorView.frameMidY = touchLocation.y;
         
         self.colorSelectorView.selectedColor = [UIColor colorWithHue:touchedPixel.h saturation:touchedPixel.s brightness:1.0f alpha:1.0f];
-    }
-    
-    self.hue = touchedPixel.h;
-    self.saturation = touchedPixel.s;
-    
-    if (self.delegate) {
-        [self.delegate colorPickerValueChanged];
+        
+        self.hue = touchedPixel.h;
+        self.saturation = touchedPixel.s;
+        
+        if (self.delegate) {
+            [self.delegate colorPickerValueChanged];
+        }
     }
 }
 

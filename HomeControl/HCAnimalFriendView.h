@@ -14,4 +14,6 @@
 
 @property (nonatomic) CGFloat eyeRadius;
 
+- (void)startAnimating;
+
 @end

@@ -27,6 +27,7 @@
 		1D75CF4C17EE92DE0041580B /* HCBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF4B17EE92DE0041580B /* HCBrightnessSlider.m */; };
 		1D75CF4F17EE9A4B0041580B /* UIView+LTKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF4E17EE9A4B0041580B /* UIView+LTKAdditions.m */; };
 		1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */; };
+		1DC466E717EFB47200C48757 /* HCSimpleEmojiIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC466E617EFB47200C48757 /* HCSimpleEmojiIcon.m */; };
 		1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5919D17EF45270062A4BB /* HCColorPicker.m */; };
 		1DD591A117EF65880062A4BB /* HCAnimalFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */; };
 		1DD591A417EF69120062A4BB /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A317EF69120062A4BB /* pig.png */; };
@@ -77,6 +78,8 @@
 		1D75CF4E17EE9A4B0041580B /* UIView+LTKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LTKAdditions.m"; sourceTree = "<group>"; };
 		1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACapsuleProgressView.m; sourceTree = "<group>"; };
 		1D75CF5117EEA7AE0041580B /* RACapsuleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACapsuleProgressView.h; sourceTree = "<group>"; };
+		1DC466E517EFB47100C48757 /* HCSimpleEmojiIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSimpleEmojiIcon.h; sourceTree = "<group>"; };
+		1DC466E617EFB47200C48757 /* HCSimpleEmojiIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSimpleEmojiIcon.m; sourceTree = "<group>"; };
 		1DD5919C17EF45270062A4BB /* HCColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCColorPicker.h; sourceTree = "<group>"; };
 		1DD5919D17EF45270062A4BB /* HCColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCColorPicker.m; sourceTree = "<group>"; };
 		1DD5919F17EF65880062A4BB /* HCAnimalFriendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAnimalFriendView.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */,
 				1DD591A917EF8C410062A4BB /* HCLightGroupButton.h */,
 				1DD591AA17EF8C410062A4BB /* HCLightGroupButton.m */,
+				1DC466E517EFB47100C48757 /* HCSimpleEmojiIcon.h */,
+				1DC466E617EFB47200C48757 /* HCSimpleEmojiIcon.m */,
 			);
 			path = HomeControl;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				1D75CF4F17EE9A4B0041580B /* UIView+LTKAdditions.m in Sources */,
 				1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */,
 				1DD591A117EF65880062A4BB /* HCAnimalFriendView.m in Sources */,
+				1DC466E717EFB47200C48757 /* HCSimpleEmojiIcon.m in Sources */,
 				1D5DFC8A17EE7789004F640E /* HCViewController.m in Sources */,
 				1D75CF4517EE873E0041580B /* HCHueHelper.m in Sources */,
 				1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */,
