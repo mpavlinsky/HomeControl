@@ -10,7 +10,7 @@
 
 @protocol HCBrightnessSliderDelegate
 @required
-- (void)brightnessSliderValueChanged:(CGFloat)value;
+- (void)brightnessSliderValueChanged;
 
 @end
 

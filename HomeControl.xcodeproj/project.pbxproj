@@ -27,6 +27,7 @@
 		1D75CF4C17EE92DE0041580B /* HCBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF4B17EE92DE0041580B /* HCBrightnessSlider.m */; };
 		1D75CF4F17EE9A4B0041580B /* UIView+LTKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF4E17EE9A4B0041580B /* UIView+LTKAdditions.m */; };
 		1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */; };
+		1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5919D17EF45270062A4BB /* HCColorPicker.m */; };
 		EF875B8B43E54BAAAD316BDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D8A68F66604E2DBE015476 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		1D75CF4E17EE9A4B0041580B /* UIView+LTKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LTKAdditions.m"; sourceTree = "<group>"; };
 		1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACapsuleProgressView.m; sourceTree = "<group>"; };
 		1D75CF5117EEA7AE0041580B /* RACapsuleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACapsuleProgressView.h; sourceTree = "<group>"; };
+		1DD5919C17EF45270062A4BB /* HCColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCColorPicker.h; sourceTree = "<group>"; };
+		1DD5919D17EF45270062A4BB /* HCColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCColorPicker.m; sourceTree = "<group>"; };
 		61D8A68F66604E2DBE015476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E95A703B9B74A43BADDA11B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +156,8 @@
 				1D75CF4417EE873E0041580B /* HCHueHelper.m */,
 				1D75CF4A17EE92DE0041580B /* HCBrightnessSlider.h */,
 				1D75CF4B17EE92DE0041580B /* HCBrightnessSlider.m */,
+				1DD5919C17EF45270062A4BB /* HCColorPicker.h */,
+				1DD5919D17EF45270062A4BB /* HCColorPicker.m */,
 			);
 			path = HomeControl;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */,
 				1D5DFC8A17EE7789004F640E /* HCViewController.m in Sources */,
 				1D75CF4517EE873E0041580B /* HCHueHelper.m in Sources */,
+				1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */,
 				1D5DFC7D17EE7789004F640E /* main.m in Sources */,
 				1D75CF4917EE90190041580B /* ISColorWheel.m in Sources */,
 				1D5DFC8117EE7789004F640E /* HCAppDelegate.m in Sources */,

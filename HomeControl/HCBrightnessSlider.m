@@ -10,13 +10,7 @@
 
 #import "RACapsuleProgressView.h"
 
-typedef struct
-{
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
-    
-} PixelRGB;
+
 
 #pragma mark -
 #pragma mark Private
@@ -26,10 +20,10 @@ typedef struct
 
 @property (strong, nonatomic) RACapsuleProgressView* backgroundView2;
 
-// Background Drawing.
-@property (strong, nonatomic) UIImageView* backgroundImageView;
-@property (nonatomic) CGImageRef backgroundImage;
-@property (strong, nonatomic) NSMutableData* backgroundImageData;
+//// Background Drawing.
+//@property (strong, nonatomic) UIImageView* backgroundImageView;
+//@property (nonatomic) CGImageRef backgroundImage;
+//@property (strong, nonatomic) NSMutableData* backgroundImageData;
 
 
 // Knob
@@ -47,13 +41,13 @@ typedef struct
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        
-        {   // Background
-            self.backgroundImageView = [[UIImageView alloc] init];
-            [self addSubview:self.backgroundImageView];
-            
-            [self updateImage];
-        }
+//        
+//        {   // Background
+//            self.backgroundImageView = [[UIImageView alloc] init];
+//            [self addSubview:self.backgroundImageView];
+//            
+//            [self updateImage];
+//        }
         
         self.backgroundView2 = [[RACapsuleProgressView alloc] init];
         self.backgroundView2.userInteractionEnabled = NO;
@@ -69,7 +63,7 @@ typedef struct
             [self addSubview:self.knobView];
         }
         
-        self.value = 0.0f;
+        self.value = 0.5f;
         
 //        [self addTarget:self action:@selector(touchedView:) forControlEvents:UIControlEventTouchDown];
     }
@@ -77,13 +71,15 @@ typedef struct
 }
 
 - (void)layoutSubviews {
-    self.backgroundImageView.frame = self.bounds;
+//    self.backgroundImageView.frame = self.bounds;
     
     
     self.backgroundView2.frame = CGRectMake(0, self.boundsMidY, self.boundsWidth, 25);
     {   // Knob
         self.knobView.frameSize = CGSizeMake(self.frameHeight, self.frameHeight);
     }
+    
+    self.value = _value;
 }
 
 - (void)touchedView:(id)sender {
@@ -103,7 +99,7 @@ typedef struct
     self.knobView.text = self.phasesOfTheKnob[knobPhase];
     
     if (self.delegate) {
-        [self.delegate brightnessSliderValueChanged:_value];
+        [self.delegate brightnessSliderValueChanged];
     }
 }
 
@@ -128,62 +124,62 @@ typedef struct
     self.value = touchX / self.boundsWidth;
 }
 
-- (void)updateImage
-{
-    NSLog(@"...Building image....");
-    if (self.backgroundImage) {
-        CGImageRelease(self.backgroundImage);
-        self.backgroundImage = nil;
-    }
-    
-    int width = 1024;//_radius * 2.0;
-    int height = 1;//_radius * 2.0;
-    
-    int dataLength = sizeof(PixelRGB) * width * height;
-    
-    if (dataLength != self.backgroundImageData.length)
-    {
-        self.backgroundImageData = [NSMutableData dataWithCapacity:dataLength];
-    }
-    
-    PixelRGB* _imageData = (PixelRGB*)self.backgroundImageData.bytes;
-    for (int x = 0; x < width; x++)
-    {
-        CGFloat lerp = (CGFloat)x/width;
-        PixelRGB color;
-        color.r = color.g = color.b = (unsigned char)(lerp * 255);
-        for (int y = 0; y < height; y++)
-        {
-            _imageData[x + y * width] = color;
-        }
-    }
-    
-    CGBitmapInfo bitInfo = kCGBitmapByteOrderDefault;
-    
-	CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, _imageData, dataLength, NULL);
-	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    
-	self.backgroundImage = CGImageCreate(width,
-                                height,
-                                8,
-                                24,
-                                width * 3,
-                                colorspace,
-                                bitInfo,
-                                ref,
-                                NULL,
-                                true,
-                                kCGRenderingIntentDefault);
-    
-    
-    CGColorSpaceRelease(colorspace);
-    CGDataProviderRelease(ref);
-    
-    self.backgroundImageView.image = [UIImage imageWithCGImage:self.backgroundImage];
-    NSLog(@"All done!");
-
-//    [self setNeedsDisplay];
-}
+//- (void)updateImage
+//{
+//    NSLog(@"...Building image....");
+//    if (self.backgroundImage) {
+//        CGImageRelease(self.backgroundImage);
+//        self.backgroundImage = nil;
+//    }
+//    
+//    int width = 1024;//_radius * 2.0;
+//    int height = 1;//_radius * 2.0;
+//    
+//    int dataLength = sizeof(PixelRGB) * width * height;
+//    
+//    if (dataLength != self.backgroundImageData.length)
+//    {
+//        self.backgroundImageData = [NSMutableData dataWithCapacity:dataLength];
+//    }
+//    
+//    PixelRGB* _imageData = (PixelRGB*)self.backgroundImageData.bytes;
+//    for (int x = 0; x < width; x++)
+//    {
+//        CGFloat lerp = (CGFloat)x/width;
+//        PixelRGB color;
+//        color.r = color.g = color.b = (unsigned char)(lerp * 255);
+//        for (int y = 0; y < height; y++)
+//        {
+//            _imageData[x + y * width] = color;
+//        }
+//    }
+//    
+//    CGBitmapInfo bitInfo = kCGBitmapByteOrderDefault;
+//    
+//	CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, _imageData, dataLength, NULL);
+//	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+//    
+//	self.backgroundImage = CGImageCreate(width,
+//                                height,
+//                                8,
+//                                24,
+//                                width * 3,
+//                                colorspace,
+//                                bitInfo,
+//                                ref,
+//                                NULL,
+//                                true,
+//                                kCGRenderingIntentDefault);
+//    
+//    
+//    CGColorSpaceRelease(colorspace);
+//    CGDataProviderRelease(ref);
+//    
+//    self.backgroundImageView.image = [UIImage imageWithCGImage:self.backgroundImage];
+//    NSLog(@"All done!");
+//
+////    [self setNeedsDisplay];
+//}
 
 
 

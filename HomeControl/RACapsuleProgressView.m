@@ -136,6 +136,7 @@ static CGColorRef outlineInsideColor = nil;
 
 - (void)initialize {
     _progress = 0.0f;
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -295,16 +296,16 @@ static CGColorRef outlineInsideColor = nil;
     
     CGContextSetShouldAntialias(layerCtx, YES);
     
-    // Draw shine
-    UIColor *temp2 = [UIColor colorWithWhite:1.0f alpha:0.6f];
-    CGContextSetLineWidth(layerCtx, 2.0f * scale);
-    CGContextSetStrokeColorWithColor(layerCtx, temp2.CGColor);
-    CGContextSetLineCap(layerCtx, kCGLineCapRound);
-
-    CGContextBeginPath(layerCtx);
-    CGContextMoveToPoint(layerCtx, rect.size.width, rect.size.height * 0.45f);
-    CGContextAddLineToPoint(layerCtx, rect.size.height * 0.4f, rect.size.height * 0.3f);
-    CGContextStrokePath(layerCtx);
+//    // Draw shine
+//    UIColor *temp2 = [UIColor colorWithWhite:1.0f alpha:0.6f];
+//    CGContextSetLineWidth(layerCtx, 2.0f * scale);
+//    CGContextSetStrokeColorWithColor(layerCtx, temp2.CGColor);
+//    CGContextSetLineCap(layerCtx, kCGLineCapRound);
+//
+//    CGContextBeginPath(layerCtx);
+//    CGContextMoveToPoint(layerCtx, rect.size.width, rect.size.height * 0.45f);
+//    CGContextAddLineToPoint(layerCtx, rect.size.height * 0.4f, rect.size.height * 0.3f);
+//    CGContextStrokePath(layerCtx);
 
     
     UIColor *temp = [UIColor colorWithWhite:1.0f alpha:0.50f];
