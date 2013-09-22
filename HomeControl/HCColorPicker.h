@@ -21,4 +21,6 @@
 @property (nonatomic) CGFloat hue;
 @property (nonatomic) CGFloat saturation;
 
+@property (strong, nonatomic, readonly) UILabel* selectorView;
+
 @end

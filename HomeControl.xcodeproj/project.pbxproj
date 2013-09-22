@@ -28,6 +28,9 @@
 		1D75CF4F17EE9A4B0041580B /* UIView+LTKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF4E17EE9A4B0041580B /* UIView+LTKAdditions.m */; };
 		1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */; };
 		1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5919D17EF45270062A4BB /* HCColorPicker.m */; };
+		1DD591A117EF65880062A4BB /* HCAnimalFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */; };
+		1DD591A417EF69120062A4BB /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A317EF69120062A4BB /* pig.png */; };
+		1DD591A617EF7F220062A4BB /* grassbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD591A517EF7F220062A4BB /* grassbackground.png */; };
 		EF875B8B43E54BAAAD316BDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D8A68F66604E2DBE015476 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,10 @@
 		1D75CF5117EEA7AE0041580B /* RACapsuleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACapsuleProgressView.h; sourceTree = "<group>"; };
 		1DD5919C17EF45270062A4BB /* HCColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCColorPicker.h; sourceTree = "<group>"; };
 		1DD5919D17EF45270062A4BB /* HCColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCColorPicker.m; sourceTree = "<group>"; };
+		1DD5919F17EF65880062A4BB /* HCAnimalFriendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAnimalFriendView.h; sourceTree = "<group>"; };
+		1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAnimalFriendView.m; sourceTree = "<group>"; };
+		1DD591A317EF69120062A4BB /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		1DD591A517EF7F220062A4BB /* grassbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grassbackground.png; sourceTree = "<group>"; };
 		61D8A68F66604E2DBE015476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E95A703B9B74A43BADDA11B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +145,7 @@
 		1D5DFC7617EE7789004F640E /* HomeControl */ = {
 			isa = PBXGroup;
 			children = (
+				1DD591A217EF69120062A4BB /* Resources */,
 				1D75CF5017EEA7AE0041580B /* RACapsuleProgressView.m */,
 				1D75CF5117EEA7AE0041580B /* RACapsuleProgressView.h */,
 				1D75CF4D17EE9A4B0041580B /* UIView+LTKAdditions.h */,
@@ -158,6 +166,8 @@
 				1D75CF4B17EE92DE0041580B /* HCBrightnessSlider.m */,
 				1DD5919C17EF45270062A4BB /* HCColorPicker.h */,
 				1DD5919D17EF45270062A4BB /* HCColorPicker.m */,
+				1DD5919F17EF65880062A4BB /* HCAnimalFriendView.h */,
+				1DD591A017EF65880062A4BB /* HCAnimalFriendView.m */,
 			);
 			path = HomeControl;
 			sourceTree = "<group>";
@@ -189,6 +199,15 @@
 				1D5DFC9B17EE7789004F640E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DD591A217EF69120062A4BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1DD591A517EF7F220062A4BB /* grassbackground.png */,
+				1DD591A317EF69120062A4BB /* pig.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +292,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD591A417EF69120062A4BB /* pig.png in Resources */,
 				1D5DFC8717EE7789004F640E /* Main_iPad.storyboard in Resources */,
+				1DD591A617EF7F220062A4BB /* grassbackground.png in Resources */,
 				1D5DFC8C17EE7789004F640E /* Images.xcassets in Resources */,
 				1D5DFC8417EE7789004F640E /* Main_iPhone.storyboard in Resources */,
 				1D5DFC7B17EE7789004F640E /* InfoPlist.strings in Resources */,
@@ -331,6 +352,7 @@
 				1D75CF4C17EE92DE0041580B /* HCBrightnessSlider.m in Sources */,
 				1D75CF4F17EE9A4B0041580B /* UIView+LTKAdditions.m in Sources */,
 				1D75CF5217EEA7AE0041580B /* RACapsuleProgressView.m in Sources */,
+				1DD591A117EF65880062A4BB /* HCAnimalFriendView.m in Sources */,
 				1D5DFC8A17EE7789004F640E /* HCViewController.m in Sources */,
 				1D75CF4517EE873E0041580B /* HCHueHelper.m in Sources */,
 				1DD5919E17EF45270062A4BB /* HCColorPicker.m in Sources */,
